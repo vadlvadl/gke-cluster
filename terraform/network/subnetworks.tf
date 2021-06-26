@@ -17,6 +17,9 @@ resource "google_compute_subnetwork" "primary_cluster" {
   }
 }
 
+
+#--------- Outputs section ------------
+
 output "subnetwork_primary_name" {
   value = google_compute_subnetwork.primary_cluster.name
 }
@@ -33,8 +36,16 @@ output "subnetwork_primary_main_range_ip" {
   value = google_compute_subnetwork.primary_cluster.ip_cidr_range
 }
 
+output "subnetwork_primary_services_range_name" {
+  value = google_compute_subnetwork.primary_cluster.secondary_ip_range[0].range_name
+}
+
 output "subnetwork_primary_services_range_ip" {
   value = google_compute_subnetwork.primary_cluster.secondary_ip_range[0].ip_cidr_range
+}
+
+output "subnetwork_primary_pod_range_name" {
+  value = google_compute_subnetwork.primary_cluster.secondary_ip_range[1].range_name
 }
 
 output "subnetwork_primary_pod_range_ip" {
